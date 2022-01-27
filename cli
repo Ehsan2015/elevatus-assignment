@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+<?php
+require "vendor/autoload.php";
+
+$calculators = [
+    'H' => 'hamming',
+    'L' => 'levenshtein'
+];
+
+echo 'Please select your calculator !' . PHP_EOL . 'H: hamming' . PHP_EOL . 'L: levenshtein' . PHP_EOL;
+
+$claculatorType = trim(fgets(STDIN));
+if (empty($claculatorType)) {
+    echo 'Please select a calculator';
+    exit(0);
+}
+
+if (!array_key_exists($claculatorType, $calculators)) {
+    echo 'Please select a correct calculator' . PHP_EOL;
+    exit(0);
+}
+
+$calculator = $calculators[$claculatorType];
+
+echo 'Please enter The string A' . PHP_EOL;
+$a_string = trim(fgets(STDIN));
+echo 'Please enter The string B' . PHP_EOL;
+$b_string = trim(fgets(STDIN));
+
+try {
+    $distanceCalculator = \Elevatus\DistanceCalculator::GetDistanceCalculator($calculator);
+    $distanceCalculator->setStrings($a_string, $b_string);
+    $distance = $distanceCalculator->calculateDistance();
+    echo 'Minimum Edit Distance is: ' . $distance . PHP_EOL;
+} catch (\Exception $e) {
+    echo $e->getMessage();
+    exit(0);
+}

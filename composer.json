@@ -1,0 +1,21 @@
+{
+    "name": "elevatus/calculat_distance",
+    "description": "let the edit distance between a and b is least number of operations needed to transform a to b, write php code that calculate edit distance using hamming distance and Levenshtein distance",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ehsan Alasham",
+            "email": "e.alasham@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Elevatus\\": "src/"
+        }
+    }
+}
